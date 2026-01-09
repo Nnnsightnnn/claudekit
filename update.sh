@@ -26,12 +26,6 @@ CHECK_ONLY=false
 AUTO_MODE=false
 ROLLBACK_MODE=false
 
-# Auto-detect if running non-interactively (e.g., curl | bash)
-# In this case, default to auto mode since we can't prompt for input
-if [ ! -t 0 ]; then
-    AUTO_MODE=true
-fi
-
 # Colors (with fallback for non-color terminals)
 if [[ -t 1 ]] && command -v tput &> /dev/null && [[ $(tput colors 2>/dev/null) -ge 8 ]]; then
     RED='\033[0;31m'
@@ -225,7 +219,7 @@ do_rollback() {
     echo ""
 
     if [ "$AUTO_MODE" = false ]; then
-        read -p "Continue with rollback? [y/N]: " -n 1 -r confirm
+        read -p "Continue with rollback? [y/N]: " -n 1 -r confirm < /dev/tty
         echo
         if [[ ! $confirm =~ ^[Yy]$ ]]; then
             echo "Rollback cancelled."
