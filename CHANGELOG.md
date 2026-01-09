@@ -7,11 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.1.0] - Unreleased
+## [1.1.0] - 2026-01-09
 
 ### Added
 - `update.sh` script for updating existing installations
 - `/update-template` command for guided updates via Claude Code
+- `/hooks-analyzer` command for discovering hook automation opportunities
+- Hooks system with templates (format, validate-bash, block-secrets, run-tests)
 - Version tracking with `VERSION` file
 - Automatic backup before updates
 - Interactive diff/merge for customized files
@@ -19,6 +21,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - `install.sh` now copies VERSION file during installation
+
+### Fixed
+- Interactive prompts now work when running via `curl | bash`
 
 ## [1.0.0] - 2025-01-09
 
