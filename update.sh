@@ -334,7 +334,7 @@ handle_interactive_file() {
             cp "$temp_file" "$local_file"
             echo -e "${GREEN}✓ Added (auto mode)${NC}"
         else
-            read -p "Add this file? [Y/n]: " -n 1 -r choice
+            read -p "Add this file? [Y/n]: " -n 1 -r choice < /dev/tty
             echo
             if [[ ! $choice =~ ^[Nn]$ ]]; then
                 mkdir -p "$(dirname "$local_file")"
@@ -386,7 +386,7 @@ handle_interactive_file() {
     echo ""
 
     while true; do
-        read -p "Choice [y/n/d/m]: " -n 1 -r choice
+        read -p "Choice [y/n/d/m]: " -n 1 -r choice < /dev/tty
         echo
 
         case $choice in
@@ -420,7 +420,7 @@ handle_interactive_file() {
                 if [ -f "$merge_file" ]; then
                     if grep -q "<<<<<<< YOUR VERSION" "$merge_file"; then
                         print_warning "Conflict markers still present in file"
-                        read -p "Save anyway? [y/N]: " -n 1 -r save
+                        read -p "Save anyway? [y/N]: " -n 1 -r save < /dev/tty
                         echo
                         if [[ $save =~ ^[Yy]$ ]]; then
                             cp "$merge_file" "$local_file"
@@ -569,7 +569,7 @@ main() {
 
     # Confirm unless auto mode
     if [ "$AUTO_MODE" = false ]; then
-        read -p "Continue with update? [Y/n]: " -n 1 -r confirm
+        read -p "Continue with update? [Y/n]: " -n 1 -r confirm < /dev/tty
         echo
         if [[ $confirm =~ ^[Nn]$ ]]; then
             echo "Update cancelled."
