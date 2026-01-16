@@ -1,0 +1,14 @@
+{
+  "skills": {},
+  "metadata": {
+    "created": "2026-01-16T00:00:00",
+    "updated": "2026-01-16T00:00:00",
+    "version": "1.0.0",
+    "description": "Tracks skill invocations, successes, and failures for effectiveness monitoring",
+    "thresholds": {
+      "low_success_rate": 80,
+      "dormant_days": 7,
+      "failure_escalation": 2
+    }
+  }
+}

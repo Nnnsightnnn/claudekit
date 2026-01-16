@@ -1,0 +1,13 @@
+{
+  "errors": {},
+  "metadata": {
+    "created": "2026-01-16T00:00:00",
+    "updated": "2026-01-16T00:00:00",
+    "version": "1.0.0",
+    "description": "Tracks error fingerprints for self-improvement loop",
+    "thresholds": {
+      "catalog": 2,
+      "escalate": 3
+    }
+  }
+}

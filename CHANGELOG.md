@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-01-16
+
+### Added
+- Self-improvement loop with 4 interconnected skills:
+  - `bloat-manager`: System health monitoring and artifact growth management
+  - `ai-error-learner`: Automatic cataloging of recurring errors as pain points
+  - `skill-builder`: Transforms pain points into working skills
+  - `skill-improver`: Monitors and improves skill effectiveness
+- Python hooks system with 4 production-ready hooks:
+  - `skill_suggester.py`: Suggests relevant skills based on prompt keywords (UserPromptSubmit)
+  - `security_gate.py`: Blocks edits to sensitive files like .env, secrets (PreToolUse)
+  - `error_detector.py`: Fingerprints and tracks recurring errors (PostToolUse)
+  - `skill_monitor.py`: Tracks skill invocations and success rates (PostToolUse)
+- Episodic memory system for session summaries and discoveries
+- AI-specific pain point tracking (`ai-pain-points.md`)
+- Error fingerprint history (`ai-error-history.json`)
+- Skill metrics tracking (`skill-metrics.json`)
+- Full hooks configuration in `settings.local.json`
+
+### Changed
+- Updated `settings.local.json` with hooks configuration for all three hook types
+
 ## [1.1.0] - 2026-01-09
 
 ### Added
@@ -36,6 +58,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Guard rail specification system
 - Comprehensive documentation
 
-[Unreleased]: https://github.com/Nnnsightnnn/claudekit/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/Nnnsightnnn/claudekit/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/Nnnsightnnn/claudekit/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/Nnnsightnnn/claudekit/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/Nnnsightnnn/claudekit/releases/tag/v1.0.0
