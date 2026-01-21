@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Expanded README skills section to document all 8 skills
+- Added skill categorization (user-invocable, self-improvement loop, maintenance)
+- Documented all update.sh modes (--check, --auto, --rollback)
+- Added file category table explaining what gets updated vs preserved
+- Added Python hooks documentation to README
+- Added install script interactive behavior note
+- Added README badges (version, license, Claude Code compatible)
+- Added "Why ClaudeKit?" section with feature comparison table
+- Added SEO-friendly tagline and keywords footer for discoverability
+- Improved README intro with keyword-rich description
+
 ## [1.2.0] - 2026-01-16
 
 ### Added
