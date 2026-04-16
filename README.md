@@ -4,6 +4,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-Compatible-blueviolet.svg)](https://claude.ai/code)
 
+**[View the showcase →](https://nnnsightnnn.github.io/claudekit/)**
+
 **The ultimate context system for Claude Code** — supercharge your AI coding assistant with persistent memory, automated workflows, and self-improving skills.
 
 A production-ready framework for Claude Code projects. Provides memory management, pain point tracking, hooks automation, and reusable slash commands.
