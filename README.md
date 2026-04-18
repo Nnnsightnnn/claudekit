@@ -1,6 +1,6 @@
 # ClaudeKit
 
-[![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)](https://github.com/Nnnsightnnn/claudekit/releases)
+[![Version](https://img.shields.io/badge/version-1.3.0-blue.svg)](https://github.com/Nnnsightnnn/claudekit/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-Compatible-blueviolet.svg)](https://claude.ai/code)
 
@@ -96,6 +96,7 @@ Once you have the update mechanism, use either:
 | `/bootstrap-project [dir]` | Full codebase analysis and setup |
 | `/update-template` | Check for and apply template updates |
 | `/hooks-analyzer` | Analyze CLAUDE.md for hook automation opportunities |
+| `/coherence [dir]` | Maintain living project understanding via document surface |
 
 ### Hooks System (`.claude/hooks/`)
 Automate workflows with Claude Code hooks. Run `/hooks-analyzer` to discover opportunities based on your CLAUDE.md rules.
@@ -129,6 +130,7 @@ Auto-invoked capabilities that activate based on context.
 | `pain-point-manager` | Track development friction | Friction, blockers, workarounds |
 | `investigation-analysis` | Analyze feature requests for ROI | "Should we build this?" |
 | `bloat-manager` | Prevent system artifact growth | Mondays (auto), "check for bloat" |
+| `coherence` | Maintain living repo understanding | `/coherence`, "update coherence" |
 
 **Self-Improvement Loop (v1.2.0):**
 | Stage | Skill | Purpose |

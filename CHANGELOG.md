@@ -7,9 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.0] - 2026-04-18
+
+### Added
+- `coherence` skill (v0.2.0): maintain a living, self-updating understanding of any repo through a decomposable document surface (`.claude/coherence/`)
+- `/coherence` slash command for invoking the coherence skill
+- Skill metrics tracking for coherence in `skill-metrics.json`
+
+### Fixed
+- install.sh: added missing v1.2.0 skills (bloat-manager, ai-error-learner, skill-builder, skill-improver) to directory creation and download steps
+- install.sh: added missing `/hooks-analyzer` command (from v1.1.0) to command download loop and help text
+- update.sh: added missing commands (hooks-analyzer, coherence) and skills (bloat-manager, ai-error-learner, skill-builder, skill-improver, coherence) to AUTO_UPDATE_FILES
+- update.sh: added `.claude/coherence/` and `skill-metrics.json` to NEVER_TOUCH_PATTERNS to preserve user data during updates
+
 ### Changed
-- Expanded README skills section to document all 8 skills
-- Added skill categorization (user-invocable, self-improvement loop, maintenance)
+- Expanded README skills section to document all 9 skills
+- Added skill categorization (user-invocable, self-improvement loop, maintenance, context)
 - Documented all update.sh modes (--check, --auto, --rollback)
 - Added file category table explaining what gets updated vs preserved
 - Added Python hooks documentation to README
@@ -70,7 +83,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Guard rail specification system
 - Comprehensive documentation
 
-[Unreleased]: https://github.com/Nnnsightnnn/claudekit/compare/v1.2.0...HEAD
+[Unreleased]: https://github.com/Nnnsightnnn/claudekit/compare/v1.3.0...HEAD
+[1.3.0]: https://github.com/Nnnsightnnn/claudekit/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/Nnnsightnnn/claudekit/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/Nnnsightnnn/claudekit/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/Nnnsightnnn/claudekit/releases/tag/v1.0.0

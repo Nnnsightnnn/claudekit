@@ -1,8 +1,20 @@
 {
-  "skills": {},
+  "skills": {
+    "coherence": {
+      "invocations": 1,
+      "successes": 1,
+      "failures": 0,
+      "origin": "design-driven",
+      "created": "2026-04-07",
+      "version": "0.2.0",
+      "category": "context-maintenance",
+      "first_test_target": "colony_mvp",
+      "first_test_date": "2026-04-07"
+    }
+  },
   "metadata": {
     "created": "2026-01-16T00:00:00",
-    "updated": "2026-01-16T00:00:00",
+    "updated": "2026-04-07T00:00:00",
     "version": "1.0.0",
     "description": "Tracks skill invocations, successes, and failures for effectiveness monitoring",
     "thresholds": {

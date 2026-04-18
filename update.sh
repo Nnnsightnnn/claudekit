@@ -60,10 +60,17 @@ AUTO_UPDATE_FILES=(
     ".claude/commands/orchestrate-tasks.md"
     ".claude/commands/bootstrap-project.md"
     ".claude/commands/update-template.md"
+    ".claude/commands/hooks-analyzer.md"
+    ".claude/commands/coherence.md"
     ".claude/skills/project-builder/SKILL.md"
     ".claude/skills/pain-point-manager/SKILL.md"
     ".claude/skills/memory-consolidation/prompt.md"
     ".claude/skills/investigation-analysis/SKILL.md"
+    ".claude/skills/bloat-manager/SKILL.md"
+    ".claude/skills/ai-error-learner/SKILL.md"
+    ".claude/skills/skill-builder/SKILL.md"
+    ".claude/skills/skill-improver/SKILL.md"
+    ".claude/skills/coherence/SKILL.md"
     ".claude/README.md"
 )
 
@@ -82,6 +89,8 @@ NEVER_TOUCH_PATTERNS=(
     ".claude/memory/archives/"
     ".claude/pain-points/active-pain-points.md"
     ".claude/pain-points/archives/"
+    ".claude/coherence/"
+    ".claude/skills/skill-metrics.json"
     "CLAUDE.md"
 )
 

@@ -61,7 +61,7 @@ echo "Creating directory structure..."
 mkdir -p .claude/{commands,skills,memory/{active,structured/patterns,indexes,archives,maintenance},pain-points/archives,templates,specs}
 
 # Create skill directories
-mkdir -p .claude/skills/{project-builder,pain-point-manager,memory-consolidation,investigation-analysis}
+mkdir -p .claude/skills/{project-builder,pain-point-manager,memory-consolidation,investigation-analysis,bloat-manager,ai-error-learner,skill-builder,skill-improver,coherence}
 
 echo "Downloading template files..."
 
@@ -78,7 +78,7 @@ download_file() {
 
 # Download commands
 echo "  Commands..."
-for cmd in focus investigate deep-investigate brainstorm-design plan-as-group sprint-plan orchestrate-tasks bootstrap-project update-template; do
+for cmd in focus investigate deep-investigate brainstorm-design plan-as-group sprint-plan orchestrate-tasks bootstrap-project update-template hooks-analyzer coherence; do
     download_file ".claude/commands/$cmd.md" ".claude/commands/$cmd.md"
 done
 
@@ -88,6 +88,11 @@ download_file ".claude/skills/project-builder/SKILL.md" ".claude/skills/project-
 download_file ".claude/skills/pain-point-manager/SKILL.md" ".claude/skills/pain-point-manager/SKILL.md"
 download_file ".claude/skills/memory-consolidation/prompt.md" ".claude/skills/memory-consolidation/prompt.md"
 download_file ".claude/skills/investigation-analysis/SKILL.md" ".claude/skills/investigation-analysis/SKILL.md"
+download_file ".claude/skills/bloat-manager/SKILL.md" ".claude/skills/bloat-manager/SKILL.md"
+download_file ".claude/skills/ai-error-learner/SKILL.md" ".claude/skills/ai-error-learner/SKILL.md"
+download_file ".claude/skills/skill-builder/SKILL.md" ".claude/skills/skill-builder/SKILL.md"
+download_file ".claude/skills/skill-improver/SKILL.md" ".claude/skills/skill-improver/SKILL.md"
+download_file ".claude/skills/coherence/SKILL.md" ".claude/skills/coherence/SKILL.md"
 
 # Download memory files
 echo "  Memory system..."
@@ -172,6 +177,8 @@ echo "  /sprint-plan           - Weekly sprint planning"
 echo "  /orchestrate-tasks     - Parallel task execution"
 echo "  /bootstrap-project     - Full codebase analysis"
 echo "  /update-template       - Check for and apply updates"
+echo "  /hooks-analyzer        - Discover hook automation opportunities"
+echo "  /coherence             - Maintain living project understanding"
 echo ""
 echo "To update later:"
 echo "  /update-template --check   # Check for updates"
