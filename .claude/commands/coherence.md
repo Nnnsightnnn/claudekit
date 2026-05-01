@@ -48,7 +48,7 @@ See `.claude/skills/coherence/SKILL.md` for the full specification, including wo
 /coherence
 
 # Run a cycle against a specific project
-/coherence /Users/kenny/playmakers-data
+/coherence /path/to/your-project
 
 # Run a cycle against a repo that's new to the skill (first run = bootstrap)
 /coherence /path/to/new-project

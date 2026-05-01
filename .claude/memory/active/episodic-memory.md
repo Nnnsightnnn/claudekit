@@ -1,71 +1,37 @@
 # Episodic Memory
 
-*Session summaries and discoveries - provides context for what has been worked on and learned*
+*Session summaries and discoveries — provides context for what has been worked on and learned in THIS project. Append a new section per significant working session.*
 
 ---
 
-## Session: 2026-01-16
+## How to use this file
 
-### Context
-Initial setup of ClaudeKit self-improvement loop and complete template implementation.
-
-### Key Discoveries
-- Self-improvement architecture requires four coordinated components: error detection, pain point cataloging, skill creation, and skill monitoring
-- Hooks must fail open (never block on errors) to maintain system reliability
-- Error fingerprinting needs consistency: same error should always produce same fingerprint
-
-### Patterns Used
-- Skill template structure from transfer guide
-- Hook script patterns with JSON output
-- Soft limits philosophy for bloat management
-
-### New Patterns Created
-- AI error fingerprint format: `[TOOL]-[TYPE]-[CONTEXT]`
-- Escalation thresholds: 2 for catalog, 3 for escalate
-- Skill metrics tracking: invocations, successes, failures, success_rate
-
-### Skills Created
-- bloat-manager: System health and artifact growth management
-- ai-error-learner: Recurring error cataloging
-- skill-builder: Pain point to skill transformation
-- skill-improver: Skill effectiveness monitoring and improvement
-
-### Hooks Created
-- skill_suggester.py: UserPromptSubmit - suggests skills based on prompt keywords
-- security_gate.py: PreToolUse - blocks edits to sensitive files
-- error_detector.py: PostToolUse - tracks error fingerprints
-- skill_monitor.py: PostToolUse - tracks skill effectiveness
-
-### Blockers Encountered
-- None
-
----
-
-## Template: Session Entry
+After a substantive working session, add a new entry below using this shape:
 
 ```markdown
 ## Session: YYYY-MM-DD
 
 ### Context
-[What was being worked on]
+[1-2 sentences on what we were doing and why]
 
 ### Key Discoveries
-- [Discovery 1]
-- [Discovery 2]
+- [Insight, surprising finding, or confirmed hypothesis]
+- [...]
 
 ### Patterns Used
-- [Pattern name]: [How it was applied]
+- [Pattern from procedural-memory.md or quick-reference.md that helped]
 
 ### New Patterns Created
-- [Pattern name]: [Brief description]
+- [Pattern that should be added to procedural-memory.md]
 
-### Skills Created
-- [skill-name]: [Purpose]
-
-### Blockers Encountered
-- [Blocker and resolution]
+### Open Questions
+- [What we don't yet know that would help next session]
 ```
+
+Keep entries terse — this is a navigation aid, not a transcript. The full session is in chat history; this file is for "what should I remember for next time."
 
 ---
 
-*Last updated: 2026-01-16 | Retention: 30 days active, then archived*
+## Sessions
+
+*No sessions logged yet. Add the first one after your first substantive working session in this repo.*

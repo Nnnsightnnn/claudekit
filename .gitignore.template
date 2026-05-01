@@ -1,0 +1,17 @@
+# --- ClaudeKit ---
+# Per-repo error history (can be large, contains path/system info — keep local)
+.claude/pain-points/ai-error-history.json
+
+# Backup files from skill edits
+.claude/skills/*/SKILL.md.bak-*
+
+# Per-skill trial harness runtime data
+.claude/skills/*/evals/runs/
+.claude/skills/*/evals/candidates/
+
+# Active git worktrees (not part of the repo's main history)
+.claude/worktrees/
+
+# Local settings (each developer customizes their own)
+.claude/settings.local.json
+# --- /ClaudeKit ---
