@@ -73,7 +73,6 @@ AUTO_UPDATE_FILES=(
     ".claude/skills/coherence/SKILL.md"
     ".claude/skills/repo-skill-inventory/SKILL.md"
     ".claude/skills/skill-conductor/SKILL.md"
-    ".claude/skills/recycle-skills/SKILL.md"
     ".claude/README.md"
 )
 
