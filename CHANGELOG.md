@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0] - 2026-05-04
+
+### Added
+- Canonical `SKILL.md` files for all 8 distributed skills, captured in-repo so `update.sh`'s distribution path (`.claude/skills/<skill>/SKILL.md`) actually resolves
+- `ai-error-learner` upgraded to v2.2.0 — F7 false-positive filter + S8 pytest stripping rule (precision lifted 0.68 → 0.95 from a `/meta-iterate` cycle)
+- `.gitignore.template` for cleaner per-project installs
+- Per-skill `/meta-iterate` harness artifacts gitignored (`evals/`, `IMP-LOG.md`, `.bak`) so they stay local during skill development
+
+### Changed
+- **Breaking:** Installer now scaffolds skills at user-level (`~/.claude/skills/`) rather than per-project. Simplifies multi-repo workflows but changes where new installs put skills — existing per-project installs continue to work.
+- Bumped `VERSION` to `2.0.0` to reflect the install-layout change
+- Archived previous installer as `install.sh.v1-archive` for reference
+
+### Removed
+- Deprecated top-level `SKILL.md` and `skill-metrics.json` files (replaced by per-skill canonical files)
+- `recycle-skills`, `repo-skill-inventory`, and `skill-conductor` from the distribution — these are meta-tools for iterating on skills, not skills the kit should ship. They live at user-level (`~/.claude/skills/`) for local use.
+
+### Fixed
+- `docs/index.html`: Removed defunct `memory-consolidation` skill card and bumped the hero version badge to v2.0.0 so the GitHub Pages site matches reality
+
 ## [1.3.0] - 2026-04-18
 
 ### Added
@@ -83,7 +103,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Guard rail specification system
 - Comprehensive documentation
 
-[Unreleased]: https://github.com/Nnnsightnnn/claudekit/compare/v1.3.0...HEAD
+[Unreleased]: https://github.com/Nnnsightnnn/claudekit/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/Nnnsightnnn/claudekit/compare/v1.3.0...v2.0.0
 [1.3.0]: https://github.com/Nnnsightnnn/claudekit/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/Nnnsightnnn/claudekit/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/Nnnsightnnn/claudekit/compare/v1.0.0...v1.1.0
