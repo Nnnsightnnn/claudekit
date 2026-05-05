@@ -1,0 +1,5 @@
+# Track only canonical skills (.claude/skills/<skill>/SKILL.md), distributed by update.sh.
+# All meta-iterate harness/development artifacts stay local.
+.claude/skills/*/evals/
+.claude/skills/*/IMP-LOG.md
+.claude/skills/*/SKILL.md.bak-*
