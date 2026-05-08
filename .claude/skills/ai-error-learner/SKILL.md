@@ -2,7 +2,7 @@
 name: AI Error Learner
 description: Automatically detect and catalog recurring errors as AI pain points in need of skills. Activates when the same error is encountered twice in a session.
 allowed-tools: Read, Write, Edit, Grep, Glob
-version: 2.2.0
+version: 2.3.0
 ---
 
 # AI Error Learner Skill
@@ -321,15 +321,19 @@ When v2 first runs, walk the v1 file and re-fingerprint each entry under the S1-
 
 ## Skill Metadata
 
-**Version:** 2.2.0
+**Version:** 2.3.0
 **Created:** 2025-12-31
 **Last revised:** 2026-05-04 (IMP-claudekit-aiel-0003 — F4 pytest carve-out + S8 pytest stripping rule)
+**Last Updated:** 2026-05-08 (consolidation merge — three-tier dedup; per-repo copies retired)
 **Category:** Self-Improvement & Error Handling
 **Integration:** Pain Point Manager, Memory System
 **Maintenance**: Weekly error review, Monthly cleanup
 **Eval harness:** `.claude/skills/ai-error-learner/evals/`
 
 ## Changelog
+
+### v2.3.0 (2026-05-08) — consolidation merge
+- No behavioral changes. Three-tier dedup: claudekit (template) and ~/.claude (host) become the single source of truth; per-repo copy in playmakers-data was retired (it was a stale v2.0 generation, missing F4 pytest carve-out, F7 data-listing suppressor, and S8 pytest stripping rule). No repo-specific content was found in the per-repo copy — the divergence was purely a missed update, not customization.
 
 ### v2.2.0 (2026-05-04) — IMP-claudekit-aiel-0003 (applied)
 - F4 carve-out: pytest banners (`test session starts`, `ERRORS`, `FAILURES`, `short test summary info`) are NO LONGER suppressed by F4. Generic `VALIDATION/REPORT/AUDIT/BUILD` headers still suppressed.

@@ -1,72 +1,75 @@
 ---
 name: Skill Builder
-description: Transforms AI pain points into working skills. Use when creating new skills from identified patterns.
-allowed-tools: Read, Write, Edit, Grep, Glob, Bash
+description: Master skill that transforms AI pain points into working skills. Uses /deep-investigate for research, creates skill files, and updates pain point tracking.
+allowed-tools: Read, Write, Edit, Grep, Glob, Bash, Skill, Task
 ---
 
 # Skill Builder Skill
 
 ## Purpose
 
-Transform AI pain points into working skills. This skill is the second stage of the self-improvement loop, converting identified error patterns into automated solutions.
+The capstone of the self-improvement system. This skill takes cataloged AI pain points, conducts deep investigation to understand the problem thoroughly, builds a comprehensive skill to solve it, and updates all tracking documents.
 
 ## Auto-Activation Triggers
 
 This skill activates when:
-- AI Error Learner escalates a pain point (3+ occurrences)
-- User requests "create a skill for [problem]"
-- High-priority pain point needs resolution
+- An AI pain point has been cataloged and is ready for skill creation
+- AI Error Learner escalates a pain point (3+ occurrences) — auto-trigger for high-priority issues
+- User says "build a skill for [pain point]" or "create skill from AI pain point"
+- User approves a proposed skill from ai-error-learner
+- Weekly review identifies unaddressed AI pain points
 - Manual invocation with pain point ID
 
-## CRITICAL: Quality Standards
-
-**Every skill must be complete, testable, and maintainable.**
-
-### Required Skill Components
+## The Complete Self-Improvement Loop
 
 ```
-YAML Frontmatter    → name, description, allowed-tools
-Purpose Section     → Clear explanation of what and why
-Triggers Section    → Specific, observable conditions
-Workflow Section    → Complete, sequential steps
-Edge Cases Section  → Known exceptions and handling
-Error Handling      → Recovery from failures
-Metadata Section    → Version, date, category
-```
-
-## Skill Creation Architecture
-
-```
-┌─────────────────────────────────────────────────────────┐
-│                    SKILL BUILDER FLOW                    │
-│                                                          │
-│  Pain Point     Investigation     Design      Create     │
-│  ┌────────┐     ┌──────────┐    ┌───────┐   ┌───────┐  │
-│  │ Select │────▶│  Deep    │───▶│Trigger│──▶│ Write │  │
-│  │  Pain  │     │  Dive    │    │ & Flow│   │ Skill │  │
-│  │  Point │     │          │    │       │   │  File │  │
-│  └────────┘     └──────────┘    └───────┘   └───────┘  │
-│                                                    │     │
-│                                              ┌─────▼───┐ │
-│                                              │ Verify  │ │
-│                                              │   &     │ │
-│                                              │ Update  │ │
-│                                              └─────────┘ │
-└─────────────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────────────┐
+│                    SELF-IMPROVEMENT SYSTEM                      │
+│                                                                 │
+│  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐     │
+│  │   Error      │    │  AI Error    │    │    Skill     │     │
+│  │   Occurs     │───▶│   Learner    │───▶│   Builder    │     │
+│  │              │    │  (Catalog)   │    │  (Create)    │     │
+│  └──────────────┘    └──────────────┘    └──────────────┘     │
+│         ▲                                       │              │
+│         │                                       ▼              │
+│  ┌──────────────┐                        ┌──────────────┐     │
+│  │    Skill     │                        │     New      │     │
+│  │   Improver   │◀───────────────────────│    Skill     │     │
+│  │  (Refine)    │     (if fails)         │   Created    │     │
+│  └──────────────┘                        └──────────────┘     │
+│                                                                │
+└────────────────────────────────────────────────────────────────┘
 ```
 
 ## Core Workflow
 
-### Step 1: Select Pain Point
+### Phase 1: Pain Point Selection
 
-Choose pain point to address:
+**Input**: AI Pain Point ID or description
 
-**By ID:**
+```markdown
+1. Read `.claude/pain-points/ai-pain-points.md`
+2. Identify target pain point by:
+   - Explicit ID (e.g., "AI-PAIN-0001")
+   - Highest occurrence count
+   - User selection
+   - Priority level
+3. Extract pain point details:
+   - Error fingerprint
+   - Occurrence count
+   - Contexts encountered
+   - Existing proposed skill (if any)
+```
+
+**Helpers:**
+
+By ID:
 ```bash
 grep -A 20 "AI-PAIN-0012" .claude/pain-points/ai-pain-points.md
 ```
 
-**By highest occurrence:**
+By highest occurrence:
 ```bash
 python3 -c "
 import json
@@ -77,28 +80,55 @@ for fp, info in sorted_errors[:5]:
 "
 ```
 
-### Step 2: Deep Investigation
+### Phase 2: Deep Investigation
 
-Thoroughly understand the problem:
+**Use `/deep-investigate` skill for comprehensive research**
 
-1. **Reproduce the error context**
-   - What actions trigger it?
-   - What environment conditions exist?
-   - What files/tools are involved?
+```markdown
+Invoke: /deep-investigate
 
-2. **Analyze root cause**
-   - Is it a knowledge gap? (needs documentation)
-   - Is it a process gap? (needs workflow)
-   - Is it a tool gap? (needs automation)
+Investigation Prompt:
+"Investigate the recurring error pattern: [error fingerprint]
 
-3. **Review existing solutions**
-   - Do similar skills exist?
-   - Are there related patterns in memory?
-   - What approaches have been tried?
+Context:
+- Error type: [type]
+- Occurrences: [count]
+- Contexts: [list of contexts]
 
-### Step 3: Design Skill Triggers
+Research needed:
+1. Root cause analysis - why does this error occur?
+2. Existing solutions - are there patterns in the codebase that handle this?
+3. Best practices - how do similar projects solve this?
+4. Edge cases - what variations of this error exist?
+5. Prevention strategies - how can we avoid triggering this error?
+6. Recovery strategies - when error occurs, what's the best response?
 
-Define specific, observable triggers:
+Output needed:
+- Comprehensive understanding of the problem
+- Recommended skill approach
+- Required tools and integrations
+- Potential edge cases to handle
+- Success criteria for the skill"
+```
+
+If `/deep-investigate` is unavailable, perform basic investigation manually:
+
+1. **Reproduce the error context** — what actions trigger it, what environment conditions, what files/tools are involved
+2. **Analyze root cause** — knowledge gap (needs documentation), process gap (needs workflow), or tool gap (needs automation)
+3. **Review existing solutions** — similar skills, related patterns in memory, prior approaches
+
+### Phase 3: Skill Planning
+
+**Design the skill based on investigation findings**
+
+```markdown
+## Skill Plan: [Skill Name]
+
+### Problem Statement
+[Clear description of what this skill solves]
+
+### Trigger Conditions
+[When this skill should activate - be specific]
 
 **Good Triggers:**
 - "When user runs `pytest` and tests fail with import errors"
@@ -110,30 +140,57 @@ Define specific, observable triggers:
 - "When user is frustrated" (not observable)
 - "When appropriate" (undefined)
 
-### Step 4: Design Workflow
+### Workflow Steps
+1. [Detection step]
+2. [Analysis step]
+3. [Action step]
+4. [Verification step]
 
-Create complete, sequential steps:
+Each step should be atomic (one clear action), include decision points, show concrete commands, and handle branches (what if step fails?).
 
-1. **Each step should be atomic** - one clear action
-2. **Include decision points** - what to check before proceeding
-3. **Show concrete commands** - exact syntax to use
-4. **Handle branches** - what if step fails?
+### Required Tools
+- [Tool 1]: [Why needed]
+- [Tool 2]: [Why needed]
 
-### Step 5: Create Skill File
+### Edge Cases
+- [Edge case 1]: [How to handle]
+- [Edge case 2]: [How to handle]
 
-Write the complete skill using this template:
+### Success Criteria
+- [Criterion 1]
+- [Criterion 2]
+
+### Integration Points
+- [With skill X]
+- [With system Y]
+
+### Failure Modes
+- [What could go wrong]
+- [How skill-improver would detect failure]
+```
+
+### Phase 4: Skill Creation
+
+**Build the actual skill file**
+
+1. **Create skill directory**
+   ```bash
+   mkdir -p .claude/skills/[skill-name]/
+   ```
+
+2. **Write SKILL.md** using the standard template:
 
 ```markdown
 ---
 name: [Skill Name]
-description: [One-line description]. Use when [trigger condition].
-allowed-tools: [Required tools]
+description: [One-line description]. [When to use].
+allowed-tools: [comma-separated tool list]
 ---
 
 # [Skill Name] Skill
 
 ## Purpose
-[Clear explanation of what this skill does and why it exists]
+[Detailed purpose from investigation]
 
 ## Auto-Activation Triggers
 This skill activates when:
@@ -141,8 +198,12 @@ This skill activates when:
 - [Observable trigger 2]
 - [User phrase triggers]
 
-## CRITICAL: [Key Protocol]
-[Most important behavioral requirement]
+## CRITICAL: [Key Protocol Name]
+
+**[Key behavioral requirement]**
+
+### [Subsection as needed]
+[Content based on investigation]
 
 ## Core Workflow
 
@@ -152,13 +213,29 @@ This skill activates when:
 ### Step 2: [Second Step]
 [Detailed instructions with commands]
 
-[Continue for all steps...]
+### Step 3: [Third Step]
+[Detailed instructions with commands]
 
 ## Edge Cases
 
-### [Edge Case Name]
+### [Edge Case 1]
 **Condition**: [When this occurs]
 **Handling**: [What to do]
+
+### [Edge Case 2]
+**Condition**: [When this occurs]
+**Handling**: [What to do]
+
+## Integration Points
+
+### With [System/Skill]
+[How it integrates]
+
+## Output Examples
+
+### Example 1: [Scenario]
+**Trigger**: [What triggers it]
+**Response**: [What skill does]
 
 ## Error Handling
 
@@ -171,63 +248,150 @@ This skill activates when:
 
 **Version:** 1.0.0
 **Created:** YYYY-MM-DD
+**Created From:** [AI-PAIN-XXXX]
 **Category:** [Category]
-**Origin:** AI-PAIN-NNNN
+**Integration:** [Systems it integrates with]
 ```
 
-### Step 6: Update Documentation
+3. **Create any supporting files** (JSON configs, templates, etc.)
 
-After creating skill:
+### Phase 5: Documentation Updates
 
-1. **Update CLAUDE.md** (if skill is frequently used)
-   ```markdown
-   **[SKILL-NNNNN]** [Brief description]
-   > TRIGGER: [When to use]
-   ```
+**Update all tracking documents**
 
-2. **Update skill metrics**
-   ```json
-   {
-     "skills": {
-       "new-skill-name": {
-         "invocations": 0,
-         "successes": 0,
-         "failures": 0,
-         "origin": "AI-PAIN-NNNN",
-         "created": "YYYY-MM-DD"
-       }
-     }
-   }
-   ```
+#### Update AI Pain Points
 
-3. **Update error history**
-   - Mark pain point as resolved
-   - Link to new skill
+Edit `.claude/pain-points/ai-pain-points.md`:
 
-4. **Log in episodic memory**
-   ```markdown
-   ### New Skill Created
-   - Skill: [skill-name]
-   - Origin: AI-PAIN-NNNN
-   - Purpose: [brief description]
-   ```
+```markdown
+### [AI-PAIN-XXXX] [Description]
 
-### Step 7: Verify Integration
+- **Status**: RESOLVED
+- **Resolution Date**: [Today's date]
+- **Skill Created**: `[skill-name]/`
+- **Skill Location**: `.claude/skills/[skill-name]/SKILL.md`
+- [Rest of original content preserved]
+```
 
-Confirm skill is properly integrated:
+Move to "Recently Resolved" section.
+
+#### Update CLAUDE.md
+
+Add new skill to `[SKILL-00002]` (if frequently used):
+
+```markdown
+**[SKILL-00002]** Available Skills: ... • `[skill-name]/` ([brief description])
+> TRIGGER: [When to use]
+```
+
+#### Update Skill Metrics
+
+Initialize in `.claude/skills/skill-metrics.json`:
+
+```json
+{
+  "[skill-name]": {
+    "invocations": 0,
+    "successes": 0,
+    "failures": 0,
+    "success_rate": null,
+    "created_from": "AI-PAIN-XXXX",
+    "created_at": "[timestamp]",
+    "failure_patterns": [],
+    "improvements": []
+  }
+}
+```
+
+#### Update Error History
+
+Edit `.claude/pain-points/ai-error-history.json`:
+
+```json
+{
+  "[fingerprint]": {
+    ...
+    "resolved": true,
+    "resolved_by_skill": "[skill-name]",
+    "resolved_at": "[timestamp]"
+  }
+}
+```
+
+#### Log in Episodic Memory
+
+```markdown
+### New Skill Created
+- Skill: [skill-name]
+- Origin: AI-PAIN-NNNN
+- Purpose: [brief description]
+```
+
+### Phase 6: Verification
+
+**Confirm skill is properly created and integrated**
 
 ```bash
 # Check skill file exists and has valid frontmatter
-head -10 .claude/skills/new-skill-name/SKILL.md
+head -10 .claude/skills/[skill-name]/SKILL.md
 
 # Verify YAML is valid
-python3 -c "import yaml; yaml.safe_load(open('.claude/skills/new-skill-name/SKILL.md').read().split('---')[1])"
+python3 -c "import yaml; yaml.safe_load(open('.claude/skills/[skill-name]/SKILL.md').read().split('---')[1])"
 
 # Check metrics file updated
 cat .claude/skills/skill-metrics.json | python3 -m json.tool
 ```
 
-## Edge Cases
+```markdown
+## Skill Creation Verification Checklist
+
+□ Skill directory exists: `.claude/skills/[skill-name]/`
+□ SKILL.md has valid YAML frontmatter
+□ All required sections present in SKILL.md
+□ Triggers are specific and actionable
+□ Workflow is complete and logical
+□ Edge cases documented
+□ AI Pain Point marked resolved
+□ CLAUDE.md updated with new skill
+□ Skill metrics initialized
+□ Error history updated
+
+## Integration Test
+
+□ Manually trigger skill scenario
+□ Verify skill activates
+□ Confirm desired outcome achieved
+□ Check for any errors
+```
+
+## Skill Quality Standards
+
+### Required Sections
+Every skill MUST have:
+1. YAML frontmatter (name, description, allowed-tools)
+2. Purpose statement
+3. Auto-Activation Triggers (specific, testable)
+4. Core Workflow (step-by-step)
+5. Edge Cases
+6. Output Examples
+7. Error Handling
+8. Skill Metadata
+
+### Trigger Quality
+Triggers must be:
+- Specific (not "when appropriate")
+- Observable (can detect in real-time)
+- Actionable (can verify activation)
+- Non-overlapping (don't conflict with other skills)
+
+### Workflow Quality
+Workflows must be:
+- Complete (cover the full solution)
+- Sequential (clear order of operations)
+- Verifiable (can confirm each step worked)
+- Recoverable (handle failures gracefully)
+
+## Edge Cases (Skill-Builder Itself)
 
 ### Pain Point Has No Clear Solution
 **Condition**: Investigation doesn't reveal automated solution
@@ -245,65 +409,58 @@ cat .claude/skills/skill-metrics.json | python3 -m json.tool
 **Condition**: Solution requires >400 lines or multiple sub-skills
 **Handling**: Break into smaller skills with clear dependencies
 
-## Integration Points
+## Output Format
 
-### With AI Error Learner
-- Receives prioritized pain points
-- Gets context from error history
-- Reports completion status
+### Successful Skill Creation
 
-### With Skill Improver
-- New skills start at version 1.0.0
-- Skill improver monitors effectiveness
-- Triggers improvements if skill fails
+Report back with: skill name, location, source pain point ID, summary, triggers, key workflow steps, list of updates made (pain points / CLAUDE.md / metrics / error history), and next steps (test, monitor, check skill-improver). Close with: "The self-improvement loop is now complete for this pain point."
+
+### Example: Full Workflow
+
+**Input**: "Build a skill for AI-PAIN-0001 (Python module import fails)"
+
+| Phase | Output |
+|-------|--------|
+| 1. Selection | AI-PAIN-0001 — `ModuleNotFoundError` for project deps, 3 occurrences, contexts: scripts run outside project venv |
+| 2. Investigation | Root cause: deps live only in a project-specific venv (e.g., `~/.venvs/<project>`). Solution: auto-detect imports, activate venv. Edge cases: mixed imports, already-active venv. Tools: Bash, Read |
+| 3. Planning | Skill `python-venv-runner` — trigger on Python execution with project-specific imports; workflow: detect → activate → execute → report; success: no `ModuleNotFoundError` |
+| 4. Creation | `.claude/skills/python-venv-runner/SKILL.md` written — all required sections, 5 triggers, 4-step workflow, 3 edge cases |
+| 5. Docs | `ai-pain-points.md` resolved, CLAUDE.md updated, `skill-metrics.json` initialized, `ai-error-history.json` marked resolved |
+| 6. Verify | Files valid, YAML parses, structure correct, ready for use |
+
+## Integration with Other Skills
+
+### Inputs From
+- **ai-error-learner**: Provides AI Pain Points to build skills for
+- **User**: Direct requests to build skills
+
+### Outputs To
+- **skill-improver**: New skills to monitor and improve
+- **All skills**: New capabilities added to the system
+
+### Invokes
+- **/deep-investigate**: For comprehensive research before building
 
 ### With Memory System
 - Logs skill creation in episodic memory
 - May discover related patterns in procedural memory
 - Updates quick-reference for common skills
 
-## Output Examples
+## Automatic Triggers
 
-### Example 1: Creating Permission Fix Skill
-
-**Trigger**: AI-PAIN-0012 escalated (script permission errors)
-**Response**:
-```markdown
-## Skill Creation: Permission Fixer
-
-### Pain Point Analysis
-**ID**: AI-PAIN-0012
-**Fingerprint**: `BASH-PERMISSION_DENIED-scripts/`
-**Occurrences**: 5
-
-### Root Cause
-Scripts created by Write tool have 644 permissions by default.
-Execution requires 755.
-
-### Skill Design
-
-**Triggers:**
-- When creating files in `/scripts/` directory
-- When bash command fails with "Permission denied"
-- User says "make it executable"
-
-**Workflow:**
-1. Detect script creation context
-2. Check current permissions
-3. Apply chmod +x if needed
-4. Verify execution works
-
-### Created: `.claude/skills/permission-fixer/SKILL.md`
-
-[Full skill content...]
-
-### Updates Made
-- Added to skill-metrics.json
-- Marked AI-PAIN-0012 as resolved
-- Logged in episodic memory
-```
+| Condition | Action |
+|-----------|--------|
+| AI Pain Point at 3+ occurrences | Auto-invoke skill builder |
+| User approves proposed skill | Invoke skill builder |
+| Weekly review finds unaddressed pain points | Suggest skill building |
+| High-priority pain point created | Notify user, suggest immediate build |
 
 ## Error Handling
+
+### If /deep-investigate Fails
+1. Fall back to basic investigation using Read/Grep
+2. Check memory system for similar patterns
+3. Proceed with limited information, note gaps
 
 ### If Skill Write Fails
 1. Save content to temp file
@@ -320,10 +477,42 @@ Execution requires 755.
 2. Offer to create new pain point
 3. Proceed with available context
 
+### If Skill Creation Fails
+1. Log error to skill-metrics.json
+2. Preserve investigation findings
+3. Create partial skill with TODO markers
+4. Notify user of incomplete creation
+
+### If Documentation Update Fails
+1. Complete skill creation first
+2. Retry documentation updates
+3. Log any remaining gaps
+4. Manual intervention notice
+
+## Best Practices
+
+### 1. Thorough Investigation
+Don't skip /deep-investigate — understanding the problem fully leads to better skills.
+
+### 2. Specific Triggers
+Vague triggers lead to skills that don't activate when needed. Be precise.
+
+### 3. Test Mentally
+Before creating, mentally walk through: "If this error occurs, will this skill catch it?"
+
+### 4. Plan for Failure
+Every skill will need improvement. Design for the skill-improver to understand it.
+
+### 5. Complete the Loop
+Always update all documentation. Incomplete updates break the self-improvement system.
+
 ## Skill Metadata
 
-**Version:** 1.0.0
-**Created:** 2026-01-16
-**Category:** Self-Improvement
-**Integration:** AI Error Learner, Skill Improver, Memory System
-**Maintenance:** On-demand (triggered by pain point escalation)
+**Version:** 1.1.0
+**Created:** 2025-12-31
+**Last Updated:** 2026-05-08 (consolidation merge — absorbed playmakers fork)
+**Category:** Meta-Skills & Self-Improvement
+**Role:** Capstone of self-improvement system
+**Invokes:** /deep-investigate
+**Integration:** ai-error-learner, skill-improver, pain-point-manager, Memory System
+**Maintenance:** Weekly review for unaddressed pain points; on-demand triggered by pain point escalation
