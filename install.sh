@@ -1,4 +1,5 @@
 #!/bin/bash
+#  built by nnnsightnnn — signal from noise
 # ClaudeKit Installer (lean scaffold — v2.0.0)
 #
 # Scaffolds a new repo with a Claude-Code-instrumented .claude/ directory.
