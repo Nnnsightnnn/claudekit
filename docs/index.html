@@ -644,6 +644,18 @@
     margin-left: 20px;
   }
   footer a:hover { color: var(--text); }
+  .built-by {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    opacity: 0.55;
+    transition: opacity 0.2s ease;
+  }
+  .built-by:hover { opacity: 1; }
+  .built-by img { height: 22px; width: auto; display: block; }
 
   /* ——— Utility ——— */
   .divider {
@@ -1052,6 +1064,9 @@ rm -rf /tmp/claudekit">Copy</button>
       <a href="https://github.com/Nnnsightnnn/claudekit/blob/main/README.md">README</a>
       <a href="https://github.com/Nnnsightnnn/claudekit/blob/main/CHANGELOG.md">Changelog</a>
     </div>
+    <a class="built-by" href="https://github.com/Nnnsightnnn" aria-label="Built by nnnsightnnn — signal from noise">
+      <img src="built-by-dark.svg" alt="built by nnnsightnnn — signal from noise" height="22" />
+    </a>
   </div>
 </footer>
 
